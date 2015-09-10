@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="SingleFrameApplication"/>
+    <classEntry path="core.delegate.DelegateFunction"/>
+    <classEntry path="core.delegate.DelegateCollector"/>
+    <classEntry path="core.util.Logger"/>
+    <classEntry path="core.reactor.MouseReactor"/>
+    <classEntry path="core.reactor.BaseReactor"/>
+    <classEntry path="core.reactor.ResizeReactor"/>
+    <classEntry path="core.enum.Config"/>
+    <classEntry path="core.util.EnterFrameIntegrator"/>
+    <classEntry path="Cam"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
