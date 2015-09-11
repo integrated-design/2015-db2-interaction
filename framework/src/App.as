@@ -11,6 +11,7 @@ package
 	import flash.utils.getTimer;
 
 	import core.delegate.DelegateCollector;
+	import core.enum.Config;
 	import core.reactor.KeyboardReactor;
 	import core.reactor.MouseReactor;
 	import core.reactor.ResizeReactor;
@@ -37,7 +38,7 @@ package
 		 * バージョン情報
 		 * @private
 		 */
-		public static const VERSION:String = "0.1.0";
+		public static const VERSION:String = Config.FRAMEWORK_VERSION;
 
 		//----------------------------------------------------------
 		//
@@ -517,7 +518,7 @@ package
 			Logger.level = Logger.LEVEL_INFO;
 			Logger.info("+--------------------------------------------------");
 			Logger.info("+");
-			Logger.info("+ Interaction Framework, VERSION " + VERSION);
+			Logger.info("+ Interaction Framework " + VERSION);
 			Logger.info("+");
 
 			//
