@@ -46,8 +46,8 @@ package
 		//----------------------------------------------------------
 
 		/**
-		 * ドキュメントクラスに設定もしくは明示的にインスタンス化して使用する
-		 * @param stage ステージへの参照
+	 * ドキュメントクラスに設定もしくは明示的にインスタンス化して使用する
+						   * @param stage ステージへの参照
 		 * @param target 諸々の機能を委譲する先のオブジェクト
 		 * @private
 		 */
@@ -87,7 +87,7 @@ package
 		//--------------------------------------
 
 		/**
-		 * フレームレートを取得 / 設定する
+		 * フレームレート
 		 */
 		public function get frameRate():Number
 		{
@@ -100,8 +100,7 @@ package
 		}
 
 		/**
-		 * ステージ全体の高さを取得する
-		 * @private
+		 * ステージ全体の高さ
 		 */
 		override public function get height():Number
 		{
@@ -131,7 +130,7 @@ package
 		private var _milliSeconds:int;
 
 		/**
-		 * プログラムを起動してから経過したミリ秒数を取得する
+		 * プログラムを起動してから経過したミリ秒数
 		 */
 		public function get milliSeconds():int
 		{
@@ -144,7 +143,7 @@ package
 		private var _mouseCursorState:Boolean;
 
 		/**
-		 * マウスカーソルの状態(trueの場合は現在表示されている)を取得 / 設定する
+		 * マウスカーソルの状態(trueの場合は現在表示されている)
 		 */
 		public function get mouseCursorState():Boolean
 		{
@@ -206,22 +205,6 @@ package
 		}
 
 		/**
-		 * ステージ全体の高さを取得する
-		 */
-		public function get stageHeight():Number
-		{
-			return _resizeReactor.stageHeight;
-		}
-
-		/**
-		 * ステージ全体の幅を取得する
-		 */
-		public function get stageWidth():Number
-		{
-			return _resizeReactor.stageWidth;
-		}
-
-		/**
 		 * マウスのx軸方向の移動速度を取得する
 		 */
 		public function get vmouseX():Number
@@ -238,8 +221,7 @@ package
 		}
 
 		/**
-		 * ステージ全体の幅を取得する
-		 * @private
+		 * ステージの幅
 		 */
 		override public function get width():Number
 		{
