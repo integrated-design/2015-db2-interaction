@@ -12,6 +12,7 @@ package
 
 	import core.delegate.DelegateCollector;
 	import core.enum.Config;
+	import core.reactor.CameraReactor;
 	import core.reactor.KeyboardReactor;
 	import core.reactor.MouseReactor;
 	import core.reactor.ResizeReactor;
@@ -247,6 +248,7 @@ package
 			return _resizeReactor.stageWidth;
 		}
 
+		private var _cameraReactor:CameraReactor;
 		private var _delegate:DelegateCollector;
 		private var _keyboardReactor:KeyboardReactor;
 		private var _mouseReactor:MouseReactor;
@@ -478,7 +480,7 @@ package
 		 * @param r 赤（0〜255）
 		 * @param g 緑（0〜255）
 		 * @param b 青（0〜255）
-		 * @return h,s,vをもったオブジェクト
+		 * @return h,s,vという名前のプロパティをもったオブジェクト
 		 */
 		public function convertColorRGB2HSV(r:uint, g:uint, b:uint):Object
 		{
@@ -511,7 +513,7 @@ package
 		 * @param h 色相（0〜360）
 		 * @param s 彩度（0〜1）
 		 * @param v 明度（0〜1）
-		 * @return r,g,bをもったオブジェクト
+		 * @return r,g,bという名前のプロパティをもったオブジェクト
 		 */
 		public function convertColorHSV2RGB(h:Number, s:Number, v:Number):Object
 		{
@@ -527,12 +529,12 @@ package
 				var p:Number = v * (1 - s);
 				var q:Number = v * (1 - f * s);
 				var t:Number = v * (1 - (1 - f) * s);
-				return hIndex == 0 ? {r: v * 255, g: t * 255, b: p * 255} :
-					hIndex == 1 ? {r: q * 255, g: v * 255, b: p * 255} :
-					hIndex == 2 ? {r: p * 255, g: v * 255, b: t * 255} :
-					hIndex == 3 ? {r: p * 255, g: q * 255, b: v * 255} :
-					hIndex == 4 ? {r: t * 255, g: p * 255, b: v * 255} :
-					{r: v * 255, g: p * 255, b: q * 255};
+				return hIndex == 0 ? {r: uint(v * 255), g: uint(t * 255), b: uint(p * 255)} :
+					hIndex == 1 ? {r: uint(q * 255), g: uint(v * 255), b: uint(p * 255)} :
+					hIndex == 2 ? {r: uint(p * 255), g: uint(v * 255), b: uint(t * 255)} :
+					hIndex == 3 ? {r: uint(p * 255), g: uint(q * 255), b: uint(v * 255)} :
+					hIndex == 4 ? {r: uint(t * 255), g: uint(p * 255), b: uint(v * 255)} :
+					{r: uint(v * 255), g: uint(p * 255), b: uint(q * 255)};
 			}
 		}
 
@@ -578,6 +580,7 @@ package
 			_mouseReactor = new MouseReactor(_delegate, _stage);
 			_keyboardReactor = new KeyboardReactor(_delegate, _stage);
 			_soundReactor = new SoundReactor(_delegate);
+			_cameraReactor = new CameraReactor(_delegate);
 			_resizeReactor = new ResizeReactor(_delegate, _stage);
 
 			//

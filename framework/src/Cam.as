@@ -7,6 +7,7 @@ package
 	import flash.media.Camera;
 	import flash.media.Video;
 
+	import core.reactor.CameraReactor;
 	import core.util.EnterFrameIntegrator;
 
 	/**
@@ -24,7 +25,7 @@ package
 
 		public function Cam():void
 		{
-			_camera = Camera.getCamera();
+			_camera = CameraReactor.getCamera();
 			if (_camera)
 			{
 				_videoContainer = new Sprite();

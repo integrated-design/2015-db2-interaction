@@ -27,6 +27,7 @@ package core.delegate
 			_resize = new DelegateFunction(target, "resize");
 			_setup = new DelegateFunction(target, "setup");
 			_soundOn = new DelegateFunction(target, "soundOn");
+			_cameraAction = new DelegateFunction(target, "cameraAction");
 		}
 
 		//----------------------------------------------------------
@@ -34,6 +35,17 @@ package core.delegate
 		//   Property 
 		//
 		//----------------------------------------------------------
+
+		//--------------------------------------
+		// cameraAction 
+		//--------------------------------------
+
+		private var _cameraAction:DelegateFunction;
+
+		public function get cameraAction():DelegateFunction
+		{
+			return _cameraAction;
+		}
 
 		//--------------------------------------
 		// keyDown 
