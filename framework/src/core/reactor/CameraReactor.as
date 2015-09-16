@@ -47,7 +47,6 @@ package core.reactor
 				Logger.info("+");
 				if (_camera)
 				{
-					_camera.setMotionLevel(50, 2000);
 					_camera.addEventListener(ActivityEvent.ACTIVITY, _cameraActivityHandler);
 					_video = new Video();
 					_video.attachCamera(_camera);
