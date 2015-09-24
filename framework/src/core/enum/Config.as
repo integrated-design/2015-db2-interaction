@@ -17,6 +17,6 @@ package core.enum
 		/**
 		 * バージョン情報
 		 */
-		public static const FRAMEWORK_VERSION:String = "1.1.0";
+		public static const FRAMEWORK_VERSION:String = "1.2.0";
 	}
 }

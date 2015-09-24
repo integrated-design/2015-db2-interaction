@@ -31,7 +31,12 @@ package core.reactor
 
 		public static function getCamera():Camera
 		{
-			return _camera || (_camera = Camera.getCamera());
+			if (!_camera)
+			{
+				_camera = Camera.getCamera();
+				_camera.setMode(320, 240, 30);
+			}
+			return _camera;
 		}
 
 		//----------------------------------------------------------
@@ -52,9 +57,6 @@ package core.reactor
 				Logger.info("+");
 				if (_camera)
 				{
-					_camera.setMode(320, 240, 30);
-					_camera.addEventListener(ActivityEvent.ACTIVITY, _cameraActivityHandler);
-
 					_video = new Video();
 					_video.attachCamera(_camera);
 					_videoFrame = 0;
@@ -70,6 +72,7 @@ package core.reactor
 						_captureDebug = new Bitmap(_captureImage);
 					}
 
+					_camera.addEventListener(ActivityEvent.ACTIVITY, _cameraActivityHandler);
 					EnterFrameIntegrator.addEventListener(_enterFrameHandler);
 				}
 			}
