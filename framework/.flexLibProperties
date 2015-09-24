@@ -11,6 +11,7 @@
     <classEntry path="core.enum.Config"/>
     <classEntry path="core.util.EnterFrameIntegrator"/>
     <classEntry path="Cam"/>
+    <classEntry path="core.util.ColorUtil"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

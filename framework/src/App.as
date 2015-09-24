@@ -7,6 +7,7 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
+	import flash.geom.Rectangle;
 	import flash.ui.Mouse;
 	import flash.utils.getTimer;
 
@@ -17,6 +18,7 @@ package
 	import core.reactor.MouseReactor;
 	import core.reactor.ResizeReactor;
 	import core.reactor.SoundReactor;
+	import core.util.ColorUtil;
 	import core.util.EnterFrameIntegrator;
 	import core.util.Logger;
 
@@ -277,10 +279,8 @@ package
 		 * @return 生成されたランダムの値
 		 * @example 以下の例では、5から10までのランダムな数字を生成して出力します。
 		 * <listing version="3.0">
-		 * function setup() {
-		 *     var n = ramdom(5, 10);
-		 *     trace(n);
-		 * }
+		 * var n = ramdom(5, 10);
+		 * trace(n);
 		 * </listing>
 		 */
 		public function random(min:Number, max:Number):Number
@@ -426,9 +426,7 @@ package
 		 * @param hex 16進数カラー（0xRRGGBB）
 		 * @example 以下の例では、ステージに配置してあるballオブジェクトをカラーコード#FF3366に着色します。
 		 * <listing version="3.0">
-		 * function setup() {
-		 *     setColorHEX(ball, 0xFF3366);
-		 * }
+		 * setColorHEX(ball, 0xFF3366);
 		 * </listing>
 		 */
 		public function setColorHEX(target:DisplayObject, hex:uint):void
@@ -446,9 +444,7 @@ package
 		 * @param b 青（0〜255）
 		 * @example 以下の例では、ステージに配置してあるballオブジェクトを赤100、緑56、青255に着色します。
 		 * <listing version="3.0">
-		 * function setup() {
-		 *     setColorRGB(ball, 100, 56, 255);
-		 * }
+		 * setColorRGB(ball, 100, 56, 255);
 		 * </listing>
 		 */
 		public function setColorRGB(target:DisplayObject, r:uint, g:uint, b:uint):void
@@ -464,9 +460,7 @@ package
 		 * @param v 明度（0〜1）
 		 * @example 以下の例では、ステージに配置してあるballオブジェクトを色相210、彩度0.5、明度0.8に着色します。
 		 * <listing version="3.0">
-		 * function setup() {
-		 *     setColorHSV(ball, 210, 0.5, 0.8);
-		 * }
+		 * setColorHSV(ball, 210, 0.5, 0.8);
 		 * </listing>
 		 */
 		public function setColorHSV(target:DisplayObject, h:Number, s:Number, v:Number):void
@@ -481,31 +475,16 @@ package
 		 * @param g 緑（0〜255）
 		 * @param b 青（0〜255）
 		 * @return h,s,vという名前のプロパティをもったオブジェクト
+		 * <listing version="3.0">
+		 * var hsv:Object = convertColorRGB2HSV(38, 82, 127);
+		 * trace("H", hsv.h); //210.33707865168537
+		 * trace("S", hsv.s); //0.7007874015748031
+		 * trace("V", hsv.v); //0.4980392156862745
+		 * </listing>
 		 */
 		public function convertColorRGB2HSV(r:uint, g:uint, b:uint):Object
 		{
-			var h:Number = 0;
-			var s:Number = 0;
-			var v:Number = 0;
-			var rr:Number = r / 255;
-			var gg:Number = g / 255;
-			var bb:Number = b / 255;
-			var max:Number = Math.max(rr, gg, bb);
-			var min:Number = Math.min(rr, gg, bb);
-			if (max != 0)
-			{
-				s = (max - min) / max;
-				if (max == rr)
-					h = 60 * (gg - bb) / (max - min);
-				else if (max == gg)
-					h = 60 * (bb - rr) / (max - min) + 120;
-				else
-					h = 60 * (rr - gg) / (max - min) + 240;
-				while (h < 0)
-					h += 360;
-			}
-			v = max;
-			return {h: h, s: s, v: v};
+			return ColorUtil.convertColorRGB2HSV(r, g, b);
 		}
 
 		/**
@@ -514,28 +493,16 @@ package
 		 * @param s 彩度（0〜1）
 		 * @param v 明度（0〜1）
 		 * @return r,g,bという名前のプロパティをもったオブジェクト
+		 * <listing version="3.0">
+		 * var rgb:Object = convertColorHSV2RGB(210, 0.7, 0.5);
+		 * trace("R", rgb.r); //38
+		 * trace("G", rgb.g); //82
+		 * trace("B", rgb.b); //127
+		 * </listing>
 		 */
 		public function convertColorHSV2RGB(h:Number, s:Number, v:Number):Object
 		{
-			if (s == 0)
-			{
-				var gray:uint = v * 255;
-				return {r: gray, g: gray, b: gray};
-			}
-			else
-			{
-				var hIndex:int = (h / 60) >> 0;
-				var f:Number = (h / 60 - hIndex);
-				var p:Number = v * (1 - s);
-				var q:Number = v * (1 - f * s);
-				var t:Number = v * (1 - (1 - f) * s);
-				return hIndex == 0 ? {r: uint(v * 255), g: uint(t * 255), b: uint(p * 255)} :
-					hIndex == 1 ? {r: uint(q * 255), g: uint(v * 255), b: uint(p * 255)} :
-					hIndex == 2 ? {r: uint(p * 255), g: uint(v * 255), b: uint(t * 255)} :
-					hIndex == 3 ? {r: uint(p * 255), g: uint(q * 255), b: uint(v * 255)} :
-					hIndex == 4 ? {r: uint(t * 255), g: uint(p * 255), b: uint(v * 255)} :
-					{r: uint(v * 255), g: uint(p * 255), b: uint(q * 255)};
-			}
+			return ColorUtil.convertColorHSV2RGB(h, s, v);
 		}
 
 		/**
@@ -544,15 +511,33 @@ package
 		 * @return マウスカーソルがtargetに重なっている場合はtrueを返す
 		 * @example 以下の例では、ステージに配置してあるballオブジェクトに対してマウスの重なりを判定します。
 		 * <listing version="3.0">
-		 * function loop() {
-		 *     var result = checkMouseOver(ball);
-		 *     trace(result);
-		 * }
+		 * var result = checkMouseOver(ball);
+		 * trace(result);
 		 * </listing>
 		 */
 		public function checkMouseOver(target:DisplayObject):Boolean
 		{
 			return target.hitTestPoint(mouseX, mouseY, true);
+		}
+
+		/**
+		 * オブジェクトの上下左右の端の座標を取得する
+		 * @param target 座標を取得する対象の表示オブジェクト
+		 * @return 上下左右の端の座標を格納したオブジェクトを返します。
+		 * @example 以下の例では、ステージに配置してあるballオブジェクトの基準点から、ballオブジェクトの上下左右の端までの距離を取得しています。
+		 * <listing version="3.0">
+		 * var bounds = getBounds(ball);
+		 * trace("top    ", bounds.top);
+		 * trace("bottom ", bounds.bottom);
+		 * trace("left   ", bounds.left);
+		 * trace("right  ", bounds.right);
+		 * trace("");
+		 * </listing>
+		 */
+		override public function getBounds(target:DisplayObject):Rectangle
+		{
+			var bounds:Rectangle = target.getBounds(target);
+			return bounds;
 		}
 
 		private function _initialize():void
@@ -584,8 +569,8 @@ package
 			_resizeReactor = new ResizeReactor(_delegate, _stage);
 
 			//
-			//_camera = Camera.getCamera();
-			//Logger.info("+ Camera : " + (_camera ? "[OK]" : "[NG]"));
+			//if (_cameraReactor.captureDebug)
+			//	_stage.addChild(_cameraReactor.captureDebug);
 
 			//
 			EnterFrameIntegrator.addEventListener(_enterFrameHandler);

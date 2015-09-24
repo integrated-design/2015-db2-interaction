@@ -28,6 +28,7 @@ package core.delegate
 			_setup = new DelegateFunction(target, "setup");
 			_soundOn = new DelegateFunction(target, "soundOn");
 			_cameraAction = new DelegateFunction(target, "cameraAction");
+			_cameraColor = new DelegateFunction(target, "cameraColor");
 		}
 
 		//----------------------------------------------------------
@@ -45,6 +46,17 @@ package core.delegate
 		public function get cameraAction():DelegateFunction
 		{
 			return _cameraAction;
+		}
+
+		//--------------------------------------
+		// cameraColor 
+		//--------------------------------------
+
+		private var _cameraColor:DelegateFunction;
+
+		public function get cameraColor():DelegateFunction
+		{
+			return _cameraColor;
 		}
 
 		//--------------------------------------
