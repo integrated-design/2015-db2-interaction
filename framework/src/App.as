@@ -4,10 +4,12 @@ package
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.display.StageAlign;
+	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
 	import flash.geom.Rectangle;
+	import flash.system.Capabilities;
 	import flash.ui.Mouse;
 	import flash.utils.getTimer;
 
@@ -552,6 +554,10 @@ package
 			_stage = _stage || super.stage;
 			_stage.align = StageAlign.TOP_LEFT;
 			_stage.scaleMode = StageScaleMode.NO_SCALE;
+
+			//
+			if (Config.PRESENTATION_AUTO_DETECT && Capabilities.screenResolutionX == Config.PRESENTATION_SCREEN_W && Capabilities.screenResolutionY == Config.PRESENTATION_SCREEN_H)
+				_stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
 
 			//
 			_delegate = new DelegateCollector(_target);

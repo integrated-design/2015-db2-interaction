@@ -17,6 +17,13 @@ package core.enum
 		/**
 		 * バージョン情報
 		 */
-		public static const FRAMEWORK_VERSION:String = "1.2.0";
+		public static const FRAMEWORK_VERSION:String = "1.3.0";
+
+		/**
+		 * プレゼン時の画面解像度
+		 */
+		public static const PRESENTATION_AUTO_DETECT:Boolean = true;
+		public static const PRESENTATION_SCREEN_W:Number = 1024;
+		public static const PRESENTATION_SCREEN_H:Number = 768;
 	}
 }
