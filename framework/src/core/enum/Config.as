@@ -17,7 +17,7 @@ package core.enum
 		/**
 		 * バージョン情報
 		 */
-		public static const FRAMEWORK_VERSION:String = "1.3.0";
+		public static const FRAMEWORK_VERSION:String = "1.4.0";
 
 		/**
 		 * プレゼン時の画面解像度

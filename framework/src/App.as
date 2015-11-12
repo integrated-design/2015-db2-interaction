@@ -291,6 +291,21 @@ package
 		}
 
 		/**
+		 * 指定された引数のうち、ランダムに選択する
+		 * @param value ランダムの選択肢
+		 * @return ランダムに選ばれた値
+		 * @example 以下の例では、1, 5, 10, 22, 46, 100の中からランダムに選んでひとつ出力します。
+		 * <listing version="3.0">
+		 * var n = choose(1, 5, 10, 22, 46, 100);
+		 * trace(n);
+		 * </listing>
+		 */
+		public function choose(... value):*
+		{
+			return value[int(Math.random() * value.length)];
+		}
+
+		/**
 		 * 複数の数値の中から最小値を見つける
 		 * @param number 複数の数値
 		 * @return 見つかった最小値
