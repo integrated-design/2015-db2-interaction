@@ -1,38 +1,65 @@
-### OSX ###
+#----- General
+*/bin/*
+!*/bin/data/
+/bin/*
+!/bin/data/
+build/
+obj/
+*.o
+Debug*/
+Release*/
+*.mode*
+*.app/
+*.pyc
+.svn/
+old/
+tmp/
+
+
+#----- Linux
+*~
+# KDE
+.directory
+
+
+#----- OSX
+Icon
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+._*
+*.swp
+*~.nib
 
-### IDEA ###
+
+#----- Windows
+Thumbs.db
+Desktop.ini
+
+
+#----- Android
+.csettings
+
+
+#----- IDEA
 .idea
 *.iml
 
-### ActionScript ###
-# Build and Release Folders
+#----- ActionScript
 bin/
 bin-debug/
 bin-release/
 bin-release-tmp/
 bin-release-temp/
 
-### FlashBuilder Project setting ###
+# FlashBuilderProject
 #.actionScriptProperties
 #.project
 #.settings/
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
-
-# Application
+#----- App
 *.apk
 *.ipa
 *.app
